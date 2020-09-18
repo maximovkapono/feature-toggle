@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-feature-toggle-customer-table" author="a.n.maksimov">
+        <createTable tableName="feature_toggle_customer">
+            <column name="feature_toggle_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="feature_toggle_customer" columnNames="feature_toggle_id, customer_id"/>
+
+        <createSequence sequenceName="feature_toggle_customer_seq" incrementBy="10" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="add-feature-toggle-customer-fk" author="a.n.maksimov">
+        <addForeignKeyConstraint baseTableName="feature_toggle_customer"
+                                 baseColumnNames="feature_toggle_id"
+                                 constraintName="feature_toggle_fk"
+                                 referencedTableName="feature_toggle"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="feature_toggle_customer"
+                                 baseColumnNames="customer_id"
+                                 constraintName="customer_fk"
+                                 referencedTableName="customer"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

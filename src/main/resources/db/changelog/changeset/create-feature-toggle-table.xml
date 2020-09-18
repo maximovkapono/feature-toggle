@@ -1,0 +1,38 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-feature-toggle-table" author="a.n.maksimov">
+        <createTable tableName="feature_toggle">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="feature_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expire" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <column name="inverted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createSequence sequenceName="feature_toggle_seq" incrementBy="10" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="add-feature-toggle-fk" author="a.n.maksimov">
+        <addForeignKeyConstraint baseTableName="feature_toggle"
+                                 baseColumnNames="feature_id"
+                                 constraintName="feature_fk"
+                                 referencedTableName="feature"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
