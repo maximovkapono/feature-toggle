@@ -4,13 +4,11 @@ import com.swiss.feature.toggles.model.dto.request.FeatureRequestWrapper;
 import com.swiss.feature.toggles.model.dto.response.FeatureResponse;
 import com.swiss.feature.toggles.service.FeatureService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
