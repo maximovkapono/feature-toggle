@@ -6,7 +6,7 @@ You can run application with in memory database(H2) with profile "test" or creat
 DB.url: jdbc:postgresql://localhost:5432/feature
 
 DB.username: postgres
-## test
+## test-2
 
 DB.password: postgres
 
